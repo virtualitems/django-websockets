@@ -67,8 +67,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_websockets.wsgi.application'
-
+# WSGI_APPLICATION = 'django_websockets.wsgi.application'
+ASGI_APPLICATION = 'django_websockets.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
