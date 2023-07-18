@@ -1,2 +1,11 @@
+# personal
 .ignore/
+
+# python
+*/__pycache__/
+
+# virtualenv
 venv/
+
+# sqlite database
+*.sqlite3
