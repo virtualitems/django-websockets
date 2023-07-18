@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="Keywords" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Websocket client</title>
+</head>
+<body>
+
+<h1>Websocket client</h1>
+
+<input id="message" type="text" placeholder="message">
+<button id="send">Send</button>
+<hr>
+<textarea id="log" cols="30" rows="10"></textarea>
+
+<script>
+// html elements
+const inputMessage = document.getElementById('message');
+const buttonSend = document.getElementById('send');
+const textareaLog = document.getElementById('log');
+
+// websocket
+const ws = new WebSocket('ws://' + window.location.host + '/ws/');
+
+ws.onmessage = function(e) {
+  textareaLog.value = e.data + '\n' + textareaLog.value;
+};
+
+ws.onopen = function(e) {
+  console.log('open');
+  buttonSend.addEventListener('click', function() {
+    ws.send(inputMessage.value);
+    inputMessage.value = '';
+  });
+};
+
+ws.onclose = function(e) {
+  alert('Close: ' + e.data);
+};
+
+ws.onerror = function(e) {
+  alert('Error: ' + e.data);
+};
+</script>
+</body>
+</html>
