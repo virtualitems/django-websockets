@@ -2,6 +2,8 @@
 Websocket consumers
 """
 
+import logging
+
 from channels.generic.websocket import AsyncWebsocketConsumer
 
 
@@ -10,14 +12,14 @@ class SimpleConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
         """socket connection"""
-        print('connected')
+        logging.debug('connected')
         await self.accept()
 
     async def disconnect(self, close_code):
         """socket disconnection"""
-        print('disconnected', close_code)
+        logging.debug('disconnected: %s', close_code)
 
     async def receive(self, text_data):
         """socket message"""
-        print('received', text_data)
+        logging.debug('received: %s', text_data)
         await self.send(text_data=text_data)
