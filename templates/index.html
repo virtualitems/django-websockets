@@ -41,11 +41,15 @@ ws.onopen = function(e) {
 };
 
 ws.onclose = function(e) {
-  alert('Close: ' + e.data);
+  inputMessage.disabled = true;
+  buttonSend.disabled = true;
+  console.warn('close');
 };
 
 ws.onerror = function(e) {
-  alert('Error: ' + e.data);
+  inputMessage.disabled = true;
+  buttonSend.disabled = true;
+  console.error(e);
 };
 </script>
 </body>
